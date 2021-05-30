@@ -1,4 +1,4 @@
-<a href="memos/new">追加</a>
+<button onclick="location.href='memos/new'">追加</button>
 <ul>
   <% @names.each do |name|%>
   <li><a href ="/memos/memo.<%= name['id'] %>.json">
