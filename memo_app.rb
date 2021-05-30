@@ -11,7 +11,7 @@ get '/memos' do
   file_names = Dir.glob('*.json')
   @names = file_names.map do |file_name|
     File.open(file_name.to_s) do |file|
-      JSON.load(file)
+      JSON.parse(file.read)
     end
   end
   erb :index
@@ -33,7 +33,7 @@ end
 
 get '/memos/:id' do
   elements = File.open(params[:id].to_s) do |file|
-    hash = JSON.load(file)
+    JSON.parse(file.read)
   end
   @memo_title = elements['memo_title']
   @article = elements['article']
@@ -43,14 +43,14 @@ end
 
 get '/memos/:id/edit' do
   @elements = File.open(params[:id].to_s) do |file|
-    JSON.load(file)
+    JSON.parse(file.read)
   end
   erb :edit
 end
 
 patch '/memos/:id' do
   hash = File.open(params[:id].to_s) do |file|
-    JSON.load(file)
+    JSON.parse(file.read)
   end
   hash['memo_title'] = params[:memo_title]
   hash['article'] = params[:article]
