@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'sinatra'
 require 'sinatra/reloader'
 require 'json'
@@ -7,12 +5,18 @@ require 'securerandom'
 
 use Rack::MethodOverride
 
-get '/memos' do
-  file_names = Dir.glob('*.json')
-  @names = file_names.map do |file_name|
-    File.open(file_name.to_s) do |file|
-      JSON.parse(file.read)
+helpers do
+  def convert_JSON_into_hash(params)
+    File.open(params) do |file|
+        JSON.parse(file.read)
+      end
     end
+ end
+
+get '/memos' do
+  file_names = Dir.glob("*.json")
+  @names = file_names.map do |file_name|
+    convert_JSON_into_hash(file_name)
   end
   erb :index
 end
@@ -24,17 +28,15 @@ end
 post '/memos/new' do
   @memo_title = params[:memo_title]
   @article = params[:article]
-  hash = { 'id' => SecureRandom.uuid, 'memo_title' => @memo_title, 'article' => @article }
-  File.open("memo.#{hash['id']}.json", 'w') do |file|
+  hash = { "id" => SecureRandom.uuid, "memo_title" => @memo_title, "article" => @article }
+  File.open("memo.#{hash["id"]}.json","w") do |file|
     file.puts JSON.pretty_generate(hash)
   end
-  redirect to('/memos')
+  redirect to ('/memos')
 end
 
 get '/memos/:id' do
-  elements = File.open(params[:id].to_s) do |file|
-    JSON.parse(file.read)
-  end
+  elements = convert_JSON_into_hash(params[:id].to_s)
   @memo_title = elements['memo_title']
   @article = elements['article']
   @id = elements['id']
@@ -42,25 +44,21 @@ get '/memos/:id' do
 end
 
 get '/memos/:id/edit' do
-  @elements = File.open(params[:id].to_s) do |file|
-    JSON.parse(file.read)
-  end
+  @elements = convert_JSON_into_hash(params[:id].to_s)
   erb :edit
 end
 
 patch '/memos/:id' do
-  hash = File.open(params[:id].to_s) do |file|
-    JSON.parse(file.read)
-  end
+  hash = convert_JSON_into_hash(params[:id].to_s)
   hash['memo_title'] = params[:memo_title]
   hash['article'] = params[:article]
-  File.open(params[:id].to_s, 'w') do |file|
+  File.open("#{params[:id]}","w") do |file|
     JSON.dump(hash, file)
   end
-  redirect to("/memos/#{params[:id]}")
+  redirect to ("/memos/#{params[:id]}")
 end
 
 delete '/memos/:id' do
-  File.delete(params[:id].to_s)
-  redirect to('/memos')
+  File.delete("#{params[:id]}")
+  redirect to ('/memos')
 end
