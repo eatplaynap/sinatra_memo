@@ -1,0 +1,6 @@
+<form action="/memos/memo.<%= @elements['id'] %>.json" method="post">
+  <input id="hidden" type="hidden" name="_method" value="PATCH">
+  <input type="text" name="memo_title" value="<%= @elements['memo_title'] %>" required><br>
+  <textarea name="article" rows="5" required><%= @elements['article'] %></textarea><br>
+  <input type="submit" value="変更">
+</form>
