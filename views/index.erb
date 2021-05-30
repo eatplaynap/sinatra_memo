@@ -2,8 +2,7 @@
 <ul>
   <% @names.each do |name|%>
   <li><a href ="/memos/memo.<%= name['id'] %>.json">
-  <%= name['memo_title']%></a>
+  <%= h name['memo_title']%></a>
   </li>
   <% end %>
 </ul>
-

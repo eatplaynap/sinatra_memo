@@ -13,6 +13,10 @@ helpers do
       JSON.parse(file.read)
     end
   end
+
+  def h(text)
+    Rack::Utils.escape_html(text)
+  end
 end
 
 get '/memos' do

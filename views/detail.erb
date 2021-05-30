@@ -1,5 +1,5 @@
-<h2><%= @elements['memo_title'] %></h2>
-<p><%= @elements['article'] %></p>
+<h2><%= h @elements['memo_title'] %></h2>
+<p><%= h @elements['article'] %></p>
 <form action="/memos/memo.<%= @elements['id'] %>.json" method="post">
   <input type="hidden" name="_method" value="DELETE">
   <input type="submit" value="削除">
