@@ -1,8 +1,8 @@
-<h2><%= @memo_title %></h2>
-<p><%= @article %></p>
-<form action="/memos/memo.<%= @id %>.json" method="post">
+<h2><%= @elements['memo_title'] %></h2>
+<p><%= @elements['article'] %></p>
+<form action="/memos/memo.<%= @elements['id'] %>.json" method="post">
 <input id="hidden" type="hidden" name="_method" value="DELETE">
   <input type="submit" value="削除">
 </form>
-<a href="/memos/memo.<%= @id %>.json/edit">変更</a>
+<a href="/memos/memo.<%= @elements['id'] %>.json/edit">変更</a>
 <a href="/memos">一覧</a>

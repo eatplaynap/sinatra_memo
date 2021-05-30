@@ -9,7 +9,7 @@ use Rack::MethodOverride
 
 helpers do
   def convert_JSON_into_hash(params)
-    File.open(params) do |file|
+    @elements = File.open(params) do |file|
       JSON.parse(file.read)
     end
   end
@@ -38,15 +38,12 @@ post '/memos/new' do
 end
 
 get '/memos/:id' do
-  elements = convert_JSON_into_hash(params[:id].to_s)
-  @memo_title = elements['memo_title']
-  @article = elements['article']
-  @id = elements['id']
+  convert_JSON_into_hash(params[:id].to_s)
   erb :detail
 end
 
 get '/memos/:id/edit' do
-  @elements = convert_JSON_into_hash(params[:id].to_s)
+  convert_JSON_into_hash(params[:id].to_s)
   erb :edit
 end
 
