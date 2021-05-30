@@ -16,6 +16,7 @@ helpers do
 end
 
 get "/memos" do
+  @title = "一覧"
   file_names = Dir.glob("*.json")
   @names = file_names.map do |file_name|
     convert_json_into_hash(file_name)
@@ -24,6 +25,7 @@ get "/memos" do
 end
 
 get "/memos/new" do
+  @title = "新規作成"
   erb :new
 end
 
@@ -38,11 +40,13 @@ post "/memos/new" do
 end
 
 get "/memos/:id" do
+  @title = "詳細"
   convert_json_into_hash(params[:id].to_s)
   erb :detail
 end
 
 get "/memos/:id/edit" do
+  @title = "編集"
   convert_json_into_hash(params[:id].to_s)
   erb :edit
 end
