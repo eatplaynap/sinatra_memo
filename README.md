@@ -7,11 +7,11 @@ Sinatraを使って作成したメモアプリです。
 - macOS Big Sur 11.3.1
 
 # アプリケーションの入手から実行まで
-```bash
-$ git clone https://github.com/eatplaynap/sinatra_memo.git
-$ cd sinatra_memo
-$ bundle install
-$ ruby memo_app.rb
+```ruby
+% git clone https://github.com/eatplaynap/sinatra_memo.git
+% cd sinatra_memo
+% bundle install
+% ruby memo_app.rb
 ```
 
 ``http://localhost:4567/memos``から一覧ページに飛び、表示を確認してください。
