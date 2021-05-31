@@ -6,8 +6,7 @@ Sinatraを使って作成したメモアプリです。
 - Ruby 3.0.0
 - macOS Big Sur 11.3.1
 
-# アプリケーションの入手から実行
-
+# アプリケーションの入手から実行まで
 ```bash
 $ git clone https://github.com/eatplaynap/sinatra_memo.git
 $ cd sinatra_memo
