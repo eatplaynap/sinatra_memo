@@ -22,7 +22,7 @@ end
 get '/memos' do
   @title = '一覧'
   file_names = Dir.glob('*.json')
-  @names = file_names.map do |file_name|
+  @memos = file_names.map do |file_name|
     convert_json_into_hash(file_name)
   end
   erb :index
