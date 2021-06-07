@@ -33,7 +33,7 @@ get '/memos/new' do
   erb :new
 end
 
-post '/memos/new' do
+post '/memos' do
   memo_title = params[:memo_title]
   article = params[:article]
   hash = { 'id' => SecureRandom.uuid, 'memo_title' => memo_title, 'article' => article }
