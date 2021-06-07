@@ -34,9 +34,9 @@ get '/memos/new' do
 end
 
 post '/memos/new' do
-  @memo_title = params[:memo_title]
-  @article = params[:article]
-  hash = { 'id' => SecureRandom.uuid, 'memo_title' => @memo_title, 'article' => @article }
+  memo_title = params[:memo_title]
+  article = params[:article]
+  hash = { 'id' => SecureRandom.uuid, 'memo_title' => memo_title, 'article' => article }
   File.open("memo.#{hash['id']}.json", 'w') do |file|
     file.puts JSON.pretty_generate(hash)
   end
