@@ -9,7 +9,7 @@ use Rack::MethodOverride
 
 helpers do
   def convert_json_into_hash(params)
-    @elements = File.open(params) do |file|
+    @memo_info = File.open(params) do |file|
       JSON.parse(file.read)
     end
   end
