@@ -9,7 +9,7 @@ use Rack::MethodOverride
 
 helpers do
   def convert_json_into_hash(params)
-    @memo_info = File.open("datastrage/"+File.basename(params)) do |file|
+    @memo_info = File.open("datastrage/#{File.basename(params)}") do |file|
       JSON.parse(file.read)
     end
   end
