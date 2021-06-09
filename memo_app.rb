@@ -24,15 +24,7 @@ end
 
 get '/memos' do
   @title = '一覧'
-  conn.exec( "SELECT memo_title FROM memo" ) do |result|
-    @memos = result.map do |row|
-      row
-    end
-end
-  # file_names = Dir.glob('datastrage/*.json')
-  # @memos = file_names.map do |file_name|
-  #   convert_json_into_hash(file_name)
-  # end
+  @memos = conn.exec( "SELECT * FROM memo" )
   erb :index
 end
 
@@ -45,17 +37,13 @@ post '/memos' do
   memo_title = params[:memo_title]
   article = params[:article]
   conn.exec("INSERT INTO memo(memo_title, article)
-    VALUES(#{memo_title}, #{article})")
-  # hash = { 'id' => SecureRandom.uuid, 'memo_title' => memo_title, 'article' => article }
-  # File.open("datastrage/memo.#{hash['id']}.json", 'w') do |file|
-  #   file.puts JSON.pretty_generate(hash)
-  # end
+    VALUES('#{memo_title}', '#{article}')")
   redirect to('/memos')
 end
 
 get '/memos/:id' do
   @title = '詳細'
-  convert_json_into_hash(params[:id])
+
   erb :detail
 end
 
