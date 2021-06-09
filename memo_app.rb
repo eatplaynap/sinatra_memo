@@ -4,8 +4,11 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'json'
 require 'securerandom'
+require 'pg'
 
 use Rack::MethodOverride
+
+conn = PG.connect( dbname: 'sinatra_memo_db' , user: "eatplaynap" )
 
 helpers do
   def convert_json_into_hash(params)
@@ -21,10 +24,15 @@ end
 
 get '/memos' do
   @title = '一覧'
-  file_names = Dir.glob('datastrage/*.json')
-  @memos = file_names.map do |file_name|
-    convert_json_into_hash(file_name)
-  end
+  conn.exec( "SELECT memo_title FROM memo" ) do |result|
+    @memos = result.map do |row|
+      row
+    end
+end
+  # file_names = Dir.glob('datastrage/*.json')
+  # @memos = file_names.map do |file_name|
+  #   convert_json_into_hash(file_name)
+  # end
   erb :index
 end
 
@@ -36,10 +44,12 @@ end
 post '/memos' do
   memo_title = params[:memo_title]
   article = params[:article]
-  hash = { 'id' => SecureRandom.uuid, 'memo_title' => memo_title, 'article' => article }
-  File.open("datastrage/memo.#{hash['id']}.json", 'w') do |file|
-    file.puts JSON.pretty_generate(hash)
-  end
+  conn.exec("INSERT INTO memo(memo_title, article)
+    VALUES(#{memo_title}, #{article})")
+  # hash = { 'id' => SecureRandom.uuid, 'memo_title' => memo_title, 'article' => article }
+  # File.open("datastrage/memo.#{hash['id']}.json", 'w') do |file|
+  #   file.puts JSON.pretty_generate(hash)
+  # end
   redirect to('/memos')
 end
 

@@ -1,8 +1,18 @@
 <button onclick="location.href='memos/new'">追加</button>
 <ul>
+<%@memos.each do |memo|%>
+<li><%= h memo['memo_title'] %></li>
+<%end%>
+
+<%
+=begin
+%>
   <% @memos.each do |memo|%>
   <li><a href ="/memos/memo.<%= memo['id'] %>.json">
   <%= h memo['memo_title']%></a>
   </li>
   <% end %>
+<%
+=end
+%>
 </ul>
