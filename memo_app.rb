@@ -43,7 +43,7 @@ end
 
 get '/memos/:id' do
   @title = '詳細'
-
+  @memo_info = conn.exec( "SELECT * FROM memo WHERE id = #{params[:id]}" )
   erb :detail
 end
 
