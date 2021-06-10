@@ -64,6 +64,7 @@ patch '/memos/:id' do
 end
 
 delete '/memos/:id' do
-  File.delete("datastrage/#{params[:id]}")
+  conn.exec ("DELETE FROM memo
+    WHERE id = #{params[:id]} ")
   redirect to('/memos')
 end
