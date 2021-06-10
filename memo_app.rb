@@ -24,7 +24,7 @@ end
 
 get '/memos' do
   @title = '一覧'
-  @memos = conn.exec( "SELECT * FROM memo" )
+  @memos = conn.exec( "SELECT * FROM memo ORDER BY id" )
   erb :index
 end
 
@@ -49,17 +49,17 @@ end
 
 get '/memos/:id/edit' do
   @title = '編集'
-  convert_json_into_hash(params[:id])
+  @memo_info = conn.exec( "SELECT * FROM memo WHERE id = #{params[:id]}" )
   erb :edit
 end
 
 patch '/memos/:id' do
-  hash = convert_json_into_hash(params[:id])
-  hash['memo_title'] = params[:memo_title]
-  hash['article'] = params[:article]
-  File.open("datastrage/#{params[:id]}", 'w') do |file|
-    JSON.dump(hash, file)
-  end
+  memo_title = params[:memo_title]
+  article = params[:article]
+  conn.exec( "UPDATE memo
+  SET memo_title = '#{memo_title}',
+      article = '#{article}'
+    WHERE id =  #{params[:id]} " )
   redirect to("/memos/#{params[:id]}")
 end
 
