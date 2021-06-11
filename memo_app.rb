@@ -11,12 +11,6 @@ use Rack::MethodOverride
 conn = PG.connect( dbname: 'sinatra_memo_db' , user: "eatplaynap" )
 
 helpers do
-  def convert_json_into_hash(params)
-    @memo_info = File.open("datastrage/#{File.basename(params)}") do |file|
-      JSON.parse(file.read)
-    end
-  end
-
   def h(text)
     Rack::Utils.escape_html(text)
   end
