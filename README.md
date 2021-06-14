@@ -13,7 +13,8 @@ Sinatraを使って作成したメモアプリです。
 $ psql -U${USER} postgres
 postgres=# create user postgres with SUPERUSER;
 $ psql -Upostgres
-postgres=# DROP TABLE IF EXISTS memo;
+postgres=# \c sinatra_memo
+sinatra_memo=# DROP TABLE IF EXISTS memo;
 CREATE TABLE memo (
   id SERIAL  PRIMARY KEY,
   memo_title TEXT NOT NULL,
