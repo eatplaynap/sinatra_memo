@@ -6,7 +6,7 @@ require 'pg'
 
 use Rack::MethodOverride
 
-conn = PG.connect(dbname: 'sinatra_memo_db', user: 'eatplaynap')
+conn = PG.connect(dbname: 'sinatra_memo', user: 'postgre')
 conn.prepare('show', 'SELECT * FROM memo ORDER BY $1')
 conn.prepare("find", 'SELECT * FROM memo WHERE id = $1')
 conn.prepare('post', "INSERT INTO memo(memo_title, article) VALUES($1, $2)")
