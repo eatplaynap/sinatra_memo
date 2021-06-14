@@ -13,7 +13,12 @@ Sinatraを使って作成したメモアプリです。
 $ psql -U${USER} postgres
 postgres=# create user postgres with SUPERUSER;
 $ psql -Upostgres
-postgres=#
+postgres=# DROP TABLE IF EXISTS memo;
+CREATE TABLE memo (
+  id SERIAL  PRIMARY KEY,
+  memo_title TEXT NOT NULL,
+  article TEXT NOT NULL
+);
 ```
 
 # アプリケーションの入手から実行まで
