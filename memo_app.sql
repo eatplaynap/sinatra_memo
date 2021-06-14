@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS memo;
+CREATE TABLE memo (
+  id SERIAL  PRIMARY KEY,
+  memo_title TEXT NOT NULL,
+  article TEXT NOT NULL
+);
