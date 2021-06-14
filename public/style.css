@@ -74,6 +74,47 @@ reset.css では足りない初期化を追加
 初期設定
 ////////////////////////////////////////
 */
+h1 {
+  font-size:30px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+ul {
+  padding: 10px 10px 10px 30px;
+  line-height: 1.8;
+  font-weight: bold;
+}
+
+ul li {
+  list-style-type: disc;
+}
+
 form {
   display: inline-block;
+}
+
+input[type="submit"]{
+  display:block;
+  margin: 0 auto;
+  width: 50px;
+  height: 40px;
+  border:none;
+  background-color: #3399FF;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 8px;
+}
+
+button {
+  margin: 0 auto;
+  width: 50px;
+  height: 40px;
+  border:none;
+  background-color: #3399FF;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 8px;
 }
