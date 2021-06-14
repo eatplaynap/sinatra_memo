@@ -6,12 +6,22 @@ Sinatraを使って作成したメモアプリです。
 - Ruby 3.0.0
 - macOS Big Sur 11.3.1
 
+# 注意
+事前にpostgresqlのインストール及びDBの作成が必要になります。
+また、ご自身のpostgresql上で、`postgres`ユーザーにログインし、`sinatra_memo`というDBを作成してください。
+```
+$ psql -U${USER} postgres
+postgres=# create user postgres with SUPERUSER;
+$ psql -Upostgres
+postgres=#
+```
+
 # アプリケーションの入手から実行まで
-```ruby
-% git clone https://github.com/eatplaynap/sinatra_memo.git
-% cd sinatra_memo
-% bundle install
-% ruby memo_app.rb
+```
+$ git clone https://github.com/eatplaynap/sinatra_memo.git
+$ cd sinatra_memo
+$ bundle install
+$ ruby memo_app.rb
 ```
 
 ``http://localhost:4567/memos``から一覧ページに飛び、表示を確認してください。
