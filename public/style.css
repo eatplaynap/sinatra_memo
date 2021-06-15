@@ -103,16 +103,6 @@ h1 {
   line-height: 1.4;
 }
 
-ul {
-  padding: 10px 10px 10px 30px;
-  line-height: 1.8;
-  font-weight: bold;
-}
-
-ul li {
-  list-style-type: disc;
-}
-
 form {
   display: inline-block;
 }
@@ -200,4 +190,26 @@ form {
   font-weight: bold;
   font-size: 15px;
   border-radius: 4px;
+}
+
+.index {
+  margin-top: 20px;
+}
+
+.index__button{
+  margin: 0 auto;
+  width: 50px;
+  height: 30px;
+  border:none;
+  background-color:red;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 4px;
+}
+
+.index__list {
+  padding: 10px;
+  line-height: 1.8;
+  font-weight: bold;
 }
