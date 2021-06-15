@@ -13,6 +13,7 @@ Sinatraを使って作成したメモアプリです。
 $ psql -U${USER} postgres
 postgres=# create user postgres with SUPERUSER;
 $ psql -Upostgres
+postgres=# create database sinatra_memo owner=postgres;
 postgres=# \c sinatra_memo
 sinatra_memo=# DROP TABLE IF EXISTS memo;
 CREATE TABLE memo (
