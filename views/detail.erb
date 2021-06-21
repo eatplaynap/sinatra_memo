@@ -1,12 +1,12 @@
 <div class="memo">
-  <h2 class="memo__title"><%= h @memo_info['memo_title'] %></h2>
-  <p class="memo__article"><%= h @memo_info['article'] %></p>
+  <h2 class="memo__title"><%= h @memo['memo_title'] %></h2>
+  <p class="memo__article"><%= h @memo['article'] %></p>
 </div>
 <div class="button">
-  <form action="/memos/<%= @memo_info['id'] %>" method="post">
+  <form action="/memos/<%= @memo['id'] %>" method="post">
     <input type="hidden" name="_method" value="DELETE">
     <input class="button__delete" type="submit" value="削除">
   </form>
-  <button class="button__modify" onclick="location.href='/memos/<%= @memo_info['id'] %>/edit'">変更</button>
+  <button class="button__modify" onclick="location.href='/memos/<%= @memo['id'] %>/edit'">変更</button>
   <button class="button_return" onclick="location.href='/memos'">一覧</button>
 </div>

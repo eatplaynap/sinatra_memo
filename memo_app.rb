@@ -43,13 +43,13 @@ end
 
 get '/memos/:id' do
   @title = '詳細'
-  @memo_info = find(conn,params[:id])[0]
+  @memo = find(conn,params[:id])[0]
   erb :detail
 end
 
 get '/memos/:id/edit' do
   @title = '編集'
-  @memo_info = find(conn,params[:id])[0]
+  @memo = find(conn,params[:id])[0]
   erb :edit
 end
 
