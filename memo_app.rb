@@ -10,7 +10,6 @@ conn = PG.connect(dbname: 'sinatra_memo', user: 'postgres')
 conn.prepare('find_all', 'SELECT * FROM memo ORDER BY $1')
 conn.prepare('find', 'SELECT * FROM memo WHERE id = $1')
 conn.prepare('post', 'INSERT INTO memo(memo_title, article) VALUES($1, $2)')
-conn.prepare('edit', 'SELECT * FROM memo WHERE id = $1')
 conn.prepare('patch', 'UPDATE memo SET memo_title = $1, article = $2 WHERE id = $3')
 conn.prepare('delete', 'DELETE FROM memo WHERE id = $1')
 
@@ -46,7 +45,7 @@ end
 
 get '/memos/:id/edit' do
   @title = '編集'
-  @memo_info = conn.exec_prepared('edit', [params[:id].to_s])
+  @memo_info = conn.exec_prepared('find', [params[:id].to_s])
   erb :edit
 end
 
