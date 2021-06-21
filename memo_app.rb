@@ -19,7 +19,7 @@ helpers do
   end
 
   def find(conn,id)
-    conn.exec_prepared('find', [id])
+    @memo = conn.exec_prepared('find', [id])[0]
   end
 end
 
@@ -43,13 +43,13 @@ end
 
 get '/memos/:id' do
   @title = '詳細'
-  @memo = find(conn,params[:id])[0]
+  find(conn,params[:id])
   erb :detail
 end
 
 get '/memos/:id/edit' do
   @title = '編集'
-  @memo = find(conn,params[:id])[0]
+  find(conn,params[:id])
   erb :edit
 end
 
