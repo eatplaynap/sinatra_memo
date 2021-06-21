@@ -1,9 +1,9 @@
 <div class="edit">
   <div class="memoform">
-    <form action="/memos/<%= @memo_info[0]['id'] %>" method="post">
+    <form action="/memos/<%= @memo_info['id'] %>" method="post">
       <input type="hidden" name="_method" value="PATCH">
-      <input class="edit__title" type="text" name="memo_title" value="<%= h @memo_info[0]['memo_title'] %>" required><br>
-      <textarea class="edit__article" name="article" required><%= h @memo_info[0]['article'] %></textarea><br>
+      <input class="edit__title" type="text" name="memo_title" value="<%= h @memo_info['memo_title'] %>" required><br>
+      <textarea class="edit__article" name="article" required><%= h @memo_info['article'] %></textarea><br>
   </div>
   <input class="edit__button" type="submit" value="変更">
   </form>

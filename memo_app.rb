@@ -17,6 +17,10 @@ helpers do
   def h(text)
     Rack::Utils.escape_html(text)
   end
+
+  def find(conn,id)
+    conn.exec_prepared('find', [id])
+  end
 end
 
 get '/memos' do
@@ -39,13 +43,13 @@ end
 
 get '/memos/:id' do
   @title = '詳細'
-  @memo_info = conn.exec_prepared('find', [params[:id]])
+  @memo_info = find(conn,params[:id])[0]
   erb :detail
 end
 
 get '/memos/:id/edit' do
   @title = '編集'
-  @memo_info = conn.exec_prepared('find', [params[:id]])
+  @memo_info = find(conn,params[:id])[0]
   erb :edit
 end
 
