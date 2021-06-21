@@ -33,7 +33,7 @@ end
 post '/memos' do
   memo_title = params[:memo_title]
   article = params[:article]
-  conn.exec_prepared('post', [memo_title.to_s, article.to_s])
+  conn.exec_prepared('post', [memo_title, article])
   redirect to('/memos')
 end
 
