@@ -1,9 +1,9 @@
 <div class="index">
   <button class="index__button" onclick="location.href='memos/new'">追加</button>
   <ul class="index__list">
-    <%@memos.each do |memo|%>
+    <% @memos.each do |memo| %>
     <li><a href="/memos/<%= memo['id'] %>">
         <%= h memo['memo_title'] %></li>
-    <%end%>
+    <% end %>
   </ul>
 </div>
