@@ -1,7 +1,9 @@
 <div class="new">
-  <form class="memoform" action="/memos" method="post">
-    <input class="new__title" type="text" name="memo_title" placeholder="メモタイトル" required><br>
-    <textarea class="new__article" name="article" placeholder="メモ内容" required></textarea><br>
-  </form><br>
-  <input class="new__button" type="submit" value="保存">
+  <form action="/memos" method="post">
+    <div class="memoform">
+      <input class="new__title" type="text" name="memo_title" placeholder="メモタイトル" required><br>
+      <textarea class="new__article" name="article" placeholder="メモ内容" required></textarea><br>
+    </div>
+    <input class="new__button" type="submit" value="保存">
+  </form>
 </div>
