@@ -39,13 +39,13 @@ end
 
 get '/memos/:id' do
   @title = '詳細'
-  @memo_info = conn.exec_prepared('find', [params[:id].to_s])
+  @memo_info = conn.exec_prepared('find', [params[:id]])
   erb :detail
 end
 
 get '/memos/:id/edit' do
   @title = '編集'
-  @memo_info = conn.exec_prepared('find', [params[:id].to_s])
+  @memo_info = conn.exec_prepared('find', [params[:id]])
   erb :edit
 end
 
