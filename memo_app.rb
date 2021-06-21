@@ -7,7 +7,7 @@ require 'pg'
 use Rack::MethodOverride
 
 conn = PG.connect(dbname: 'sinatra_memo', user: 'postgres')
-conn.prepare('show', 'SELECT * FROM memo ORDER BY $1')
+conn.prepare('find_all', 'SELECT * FROM memo ORDER BY $1')
 conn.prepare('find', 'SELECT * FROM memo WHERE id = $1')
 conn.prepare('post', 'INSERT INTO memo(memo_title, article) VALUES($1, $2)')
 conn.prepare('edit', 'SELECT * FROM memo WHERE id = $1')
@@ -22,7 +22,7 @@ end
 
 get '/memos' do
   @title = '一覧'
-  @memos = conn.exec_prepared('show', ['id'])
+  @memos = conn.exec_prepared('find_all', ['id'])
   erb :index
 end
 
