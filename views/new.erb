@@ -1,5 +1,9 @@
-<form action="/memos" method="post">
-  <input type="text" name="memo_title" placeholder="メモタイトル"  required><br>
-  <textarea name="article" placeholder="メモ内容"  required></textarea><br>
-  <input type="submit" value="保存">
-</form>
+<div class="new">
+  <form action="/memos" method="post">
+    <div class="memoform">
+      <input class="new__title" type="text" name="memo_title" placeholder="メモタイトル" required><br>
+      <textarea class="new__article" name="article" placeholder="メモ内容" required></textarea><br>
+    </div>
+    <input class="new__button" type="submit" value="保存">
+  </form>
+</div>
